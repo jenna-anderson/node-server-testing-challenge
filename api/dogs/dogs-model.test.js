@@ -29,4 +29,14 @@ describe('dogs model', () => {
             expect(actual).toMatchObject(dog)
         })
     })
+    describe('delete', () => {
+        test('it deletes record from db', async() => {
+            await Dogs.remove(1)
+            expect(await db('dogs')).toHaveLength(2)
+        })
+        test('it returns deleted dog', async () => {
+            const expected = { id: 1, name: 'Kali' }
+            expect(await Dogs.remove(1)).toMatchObject(expected)
+        })
+    })
 })
