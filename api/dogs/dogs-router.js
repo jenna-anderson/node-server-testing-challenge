@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const Dogs = require('./dogs-model')
 
 router.post('/', (req, res, next) => {
     console.log('POST successfully wired')

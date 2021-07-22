@@ -15,3 +15,14 @@ beforeEach(async () => {
 afterAll(async () => {
     await db.destroy()
 })
+
+describe('[POST] /dogs', () => {
+    test('responds with status code 201', async () => {
+        const res = await request(server).post('/dogs').send({ name: 'Sandy' })
+        expect(res.status).toBe(201)
+    })
+    test('responds with newly created dog', async () => {
+        const res = await request(server).post('/dogs').send({ name: 'Sandy' })
+        expect(res.body).toMatchObject({ name: 'Sandy' })
+    })
+})
