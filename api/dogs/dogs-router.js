@@ -10,8 +10,13 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.delete('/:id', (req, res, next) => {
-    console.log('DELETE successfully wired')
+router.delete('/:id', async (req, res, next) => {
+    try{
+        const dog = await Dogs.remove(req.params.id)
+        res.status(200).json(dog)
+    } catch(err) {
+        next(err)
+    }
 })
 
 module.exports = router

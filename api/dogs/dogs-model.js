@@ -5,8 +5,10 @@ async function insert(dog) {
     return await db('dogs').where('id', id).first()
 }
 
-async function remove(dog) {
-
+async function remove(id) {
+    const removedDog = await db('dogs').where('id', id).first()
+    await db('dogs').del().where('id', id)
+    return removedDog
 }
 
 module.exports = {
