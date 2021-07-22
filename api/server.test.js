@@ -26,3 +26,14 @@ describe('[POST] /dogs', () => {
         expect(res.body).toMatchObject({ name: 'Sandy' })
     })
 })
+
+describe('[DELETE] /dogs/:id', () => {
+    test('responds with status code 200', async () => {
+        const res = await request(server).delete('/dogs/1')
+        expect(res.status).toBe(200)
+    })
+    test('responds with deleted dog', async () => {
+        const res = await request(server).delete('/dogs/1')
+        expect(res.body).toMatchObject({ name: 'Kali' })
+    })
+})
